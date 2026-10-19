@@ -28,7 +28,7 @@ async function documentColors(
 
 describe('YACP extension integration', () => {
   before(async () => {
-    const extension = vscode.extensions.getExtension('yacp.yacp');
+    const extension = vscode.extensions.getExtension('brov3r.yacp');
     assert.ok(extension, 'YACP extension should be discoverable');
     await extension.activate();
     assert.equal(extension.isActive, true);

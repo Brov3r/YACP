@@ -1,10 +1,27 @@
 {
   "name": "yacp",
   "displayName": "YACP — Yet Another Color Picker",
-  "description": "A universal color picker and format converter for any text document in VS Code.",
+  "description": "Universal color swatches, native color picker and CSS Color 4 conversion for any text document in VS Code.",
   "version": "0.1.0",
-  "publisher": "yacp",
+  "publisher": "brov3r",
+  "author": {
+    "name": "Brov3r",
+    "url": "https://github.com/Brov3r"
+  },
   "license": "MIT",
+  "icon": "media/icon.png",
+  "galleryBanner": {
+    "color": "#1C1E30",
+    "theme": "dark"
+  },
+  "homepage": "https://github.com/Brov3r/YACP#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Brov3r/YACP.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Brov3r/YACP/issues"
+  },
   "engines": {
     "vscode": "^1.90.0"
   },
@@ -15,12 +32,18 @@
   "keywords": [
     "color",
     "colour",
+    "color picker",
+    "color converter",
     "picker",
     "swatch",
+    "palette",
     "hex",
     "rgb",
     "hsl",
     "hwb",
+    "lab",
+    "oklch",
+    "css",
     "universal"
   ],
   "activationEvents": [
@@ -184,7 +207,7 @@
     "test:unit": "npm run compile && mocha \"out/test/unit/**/*.test.js\"",
     "test": "npm run test:unit",
     "test:integration": "npm run compile && vscode-test",
-    "package": "vsce package --no-dependencies --allow-missing-repository"
+    "package": "vsce package --no-dependencies"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.10",

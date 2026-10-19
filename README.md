@@ -1,5 +1,7 @@
 # YACP — Yet Another Color Picker
 
+![YACP icon](media/icon.png)
+
 YACP is a universal color picker for Visual Studio Code. It finds color literals in **any text document**, shows a native color swatch next to each one, opens VS Code's built-in color picker when a swatch is selected, and converts colors between HEX, RGB(A), HSL(A), HWB, LAB/LCH, OKLAB/OKLCH and `color()` without changing their visual meaning.
 
 YACP's parser and commands do **not** depend on a file's language mode or syntax grammar. A Python script, a Markdown note, a JSON config, an untitled buffer, and a file with a custom extension are all scanned the same way. In CSS/SCSS/LESS, VS Code's own CSS extension also supplies color decorations; YACP defers to it to avoid duplicate swatches (its commands still parse those files).
