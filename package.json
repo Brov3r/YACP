@@ -1,0 +1,202 @@
+{
+  "name": "yacp",
+  "displayName": "YACP — Yet Another Color Picker",
+  "description": "A universal color picker and format converter for any text document in VS Code.",
+  "version": "0.1.0",
+  "publisher": "yacp",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Other",
+    "Visualization"
+  ],
+  "keywords": [
+    "color",
+    "colour",
+    "picker",
+    "swatch",
+    "hex",
+    "rgb",
+    "hsl",
+    "hwb",
+    "universal"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/src/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "yacp.pickColor",
+        "title": "Pick Color",
+        "category": "YACP"
+      },
+      {
+        "command": "yacp.convertColorFormat",
+        "title": "Convert Color Format",
+        "category": "YACP"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "yacp.pickColor",
+          "when": "editorTextFocus",
+          "group": "navigation@90"
+        },
+        {
+          "command": "yacp.convertColorFormat",
+          "when": "editorTextFocus",
+          "group": "navigation@91"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "yacp.pickColor",
+          "when": "editorTextFocus"
+        },
+        {
+          "command": "yacp.convertColorFormat",
+          "when": "editorTextFocus"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "YACP",
+      "properties": {
+        "yacp.enable": {
+          "type": "boolean",
+          "default": true,
+          "scope": "resource",
+          "description": "Enable YACP color swatches and native color picker integration."
+        },
+        "yacp.defaultFormat": {
+          "type": "string",
+          "default": "auto",
+          "enum": [
+            "auto",
+            "hex",
+            "rgb",
+            "rgba",
+            "hsl",
+            "hsla",
+            "hwb",
+            "lab",
+            "lch",
+            "oklab",
+            "oklch",
+            "color"
+          ],
+          "enumDescriptions": [
+            "Preserve the format of the existing color literal when changing it.",
+            "Prefer hexadecimal presentations.",
+            "Prefer rgb() presentations.",
+            "Prefer rgba() presentations.",
+            "Prefer hsl() presentations.",
+            "Prefer hsla() presentations.",
+            "Prefer hwb() presentations.",
+            "Prefer lab() presentations.",
+            "Prefer lch() presentations.",
+            "Prefer oklab() presentations.",
+            "Prefer oklch() presentations.",
+            "Prefer color(srgb ...) presentations."
+          ],
+          "scope": "resource",
+          "description": "Format offered first in the color picker. 'auto' preserves the original literal's format and style."
+        },
+        "yacp.hexCase": {
+          "type": "string",
+          "default": "upper",
+          "enum": [
+            "upper",
+            "lower"
+          ],
+          "enumDescriptions": [
+            "Generate HEX values with uppercase digits (#FF0080).",
+            "Generate HEX values with lowercase digits (#ff0080)."
+          ],
+          "scope": "resource",
+          "description": "Letter case for generated HEX values. Existing literals keep their own case unless converted or changed."
+        },
+        "yacp.showAlpha": {
+          "type": "boolean",
+          "default": false,
+          "scope": "resource",
+          "description": "Include an alpha component in generated HEX/RGB/HSL presentations even when the color is fully opaque. Transparent colors always include alpha."
+        },
+        "yacp.supportedFormats": {
+          "type": "array",
+          "default": [
+            "hex",
+            "rgb",
+            "rgba",
+            "hsl",
+            "hsla",
+            "hwb"
+          ],
+          "items": {
+            "type": "string",
+            "enum": [
+              "hex",
+              "rgb",
+              "rgba",
+              "hsl",
+              "hsla",
+              "hwb",
+              "lab",
+              "lch",
+              "oklab",
+              "oklch",
+              "color"
+            ]
+          },
+          "uniqueItems": true,
+          "scope": "resource",
+          "description": "Target formats offered by the color picker and the YACP: Convert Color Format command. Detection of supported color syntaxes is always enabled."
+        },
+        "yacp.namedColors": {
+          "type": "string",
+          "default": "auto",
+          "enum": [
+            "auto",
+            "always",
+            "never"
+          ],
+          "enumDescriptions": [
+            "Detect CSS named colors only in stylesheet languages and only where they look like values (after a property colon or inside a function).",
+            "Detect CSS named colors in every document. This can produce false positives in prose and identifiers.",
+            "Do not detect CSS named colors or the 'transparent' keyword."
+          ],
+          "scope": "resource",
+          "description": "Controls detection of CSS named colors such as rebeccapurple or transparent."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src test --ext ts",
+    "test:unit": "npm run compile && mocha \"out/test/unit/**/*.test.js\"",
+    "test": "npm run test:unit",
+    "test:integration": "npm run compile && vscode-test",
+    "package": "vsce package --no-dependencies --allow-missing-repository"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^20.17.6",
+    "@types/vscode": "^1.90.0",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.4.1",
+    "@vscode/vsce": "^3.2.1",
+    "eslint": "^8.57.1",
+    "mocha": "^10.8.2",
+    "typescript": "^5.7.2"
+  }
+}
